@@ -1,6 +1,8 @@
-#include "raylib.h"
+#include "gameloop.h"
 
-int main(void)
+int main()
 {
+	game::GameLoop();
 
+	return 0;
 }
