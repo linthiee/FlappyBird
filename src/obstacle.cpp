@@ -29,6 +29,7 @@ void obstacle::Update(Obstacle& obstacle)
 void obstacle::Draw(Obstacle obstacle)
 {
 	DrawRectangle(static_cast<int>(obstacle.position.x), static_cast<int>(obstacle.position.y), static_cast<int>(obstacle.width), static_cast<int>(obstacle.height), RED);
+	DrawRectangle(static_cast<int>(obstacle.position.x - static_cast<int>(obstacle.width / 30.0f)), static_cast<int>(obstacle.position.y - static_cast<int>(obstacle.height * 1.5f)), static_cast<int>(obstacle.width), static_cast<int>(obstacle.height), RED);
 }
 
 void obstacle::CheckOutOfBounds(Obstacle& obstacle)

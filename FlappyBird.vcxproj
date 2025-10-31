@@ -140,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\button.cpp" />
     <ClCompile Include="src\draw.cpp" />
     <ClCompile Include="src\gameloop.cpp" />
     <ClCompile Include="src\globals.cpp" />
@@ -149,6 +150,7 @@
     <ClCompile Include="src\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\button.h" />
     <ClInclude Include="src\draw.h" />
     <ClInclude Include="src\gameloop.h" />
     <ClInclude Include="src\globals.h" />

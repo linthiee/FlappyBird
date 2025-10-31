@@ -1,6 +1,8 @@
 #include "player.h"
 #include "globals.h"
 
+#include <iostream>
+
 namespace variables
 {
 	static float velocity = 500.0f;
@@ -17,26 +19,16 @@ void player::Initialization(Bird& bird)
 
 void player::Update(Bird& bird)
 {
-	//bird.velocity -= globals::acceleration * externs::deltaT;
+	bird.velocity -= globals::acceleration * externs::deltaT;
 
-	//if (player::IsPlayerMoving())
-	//{
-	//	bird.velocity = variables::velocity;
-	//}
-
-	//bird.position.y -= bird.velocity * externs::deltaT;
-
-	if (player::IsPlayerMovingUp())
-	{
-		bird.velocity = -variables::velocity;
-	}
-	else if (player::IsPlayerMovingDown())
+	if (player::IsPlayerMoving())
 	{
 		bird.velocity = variables::velocity;
 	}
 
-	bird.position.y += bird.velocity * externs::deltaT;
+	bird.position.y -= bird.velocity * externs::deltaT;
 
+	CheckState(bird);
 }
 
 void player::Draw(Bird bird)
@@ -44,12 +36,30 @@ void player::Draw(Bird bird)
 	DrawCircleV(bird.position, 30.0f, BLUE);
 }
 
-bool player::IsPlayerMovingUp()
+bool player::IsPlayerMoving()
 {
 	return IsKeyPressed(KEY_UP);
 }
 
-bool player::IsPlayerMovingDown()
+bool player::HasLost(Bird bird)
 {
-	return IsKeyPressed(KEY_DOWN);
+	return bird.position.y - (30.0f / 2.0f) > (externs::screenHeight + 30.0f);
+}
+
+bool player::IsTouchingCeiling(Bird bird)
+{
+	return (bird.position.y - 30.0f) < 0;
+}
+
+void player::CheckState(Bird& bird)
+{
+	if (HasLost(bird))
+	{
+		std::cout << "You lost!\n";
+	}
+	if (IsTouchingCeiling(bird))
+	{
+		bird.position.y = 30.0f;
+		bird.velocity = 0.0f;
+	}
 }

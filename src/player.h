@@ -16,6 +16,10 @@ namespace player
 	void Update(Bird& bird);
 	void Draw(Bird bird);
 
-	bool IsPlayerMovingUp();
-	bool IsPlayerMovingDown();
+	bool IsPlayerMoving();
+
+	bool IsTouchingCeiling(Bird bird);
+	bool HasLost(Bird bird);
+
+	void CheckState(Bird& bird);
 }
